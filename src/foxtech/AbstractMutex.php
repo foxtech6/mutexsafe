@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Symfony package.
+ *
+ * (c) Mykhailo Bavdys <bavdysmyh@ukr.net>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Foxtech;
 
 /**
@@ -7,6 +16,8 @@ namespace Foxtech;
  *
  * Class AbstractMutex
  * @package Foxtech
+ *
+ * @author foxtech <foxtech12@gmail.com>
  */
 abstract class AbstractMutex
 {

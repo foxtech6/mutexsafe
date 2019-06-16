@@ -1,0 +1,25 @@
+{
+  "name": "foxtech6/mutex-locker",
+  "description": "This library will help you use mutex more effectively. Different mutex for different components are presented. In addition, you can add your own lockers and use within the library. ",
+  "keywords": ["php", "mutex", "lock", "locker", "pdo"],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "foxtech",
+      "email": "foxtech12@gmail.com"
+    }
+  ],
+  "require": {
+    "php" : "^7.1"
+  },
+  "require-dev": {
+    "ext-pdo" : "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Foxtech\\": "src"
+    }
+  },
+  "minimum-stability": "dev"
+}
