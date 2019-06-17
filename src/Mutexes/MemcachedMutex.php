@@ -13,17 +13,17 @@ namespace Foxtech\Mutexes;
 
 use Foxtech\AbstractMutex;
 use Foxtech\MutexInterface;
-use PDO;
+use Memcached;
 
 /**
- * Class PdoMutex
+ * Class MemcachedMutex
  * @package Foxtech
  *
  * @author foxtech <foxtech12@gmail.com>
  *
- * @property PDO $handler PDO Handler
+ * @property Memcached $handler Memcached Handler
  */
-class PdoMutex extends AbstractMutex implements MutexInterface
+class MemcachedMutex extends AbstractMutex implements MutexInterface
 {
     /**
      * {@inheritdoc}
@@ -31,8 +31,7 @@ class PdoMutex extends AbstractMutex implements MutexInterface
      */
     public function acquire(int $timeout = 30): void
     {
-        $stmt = $this->handler->prepare('SELECT GET_LOCK(?, ?)');
-        $stmt->execute([$this->name, $timeout]);
+        $this->handler->add($this->name, true, $timeout);
     }
 
     /**
@@ -41,7 +40,6 @@ class PdoMutex extends AbstractMutex implements MutexInterface
      */
     public function release(): void
     {
-        $stmt = $this->handler->prepare('SELECT RELEASE_LOCK(?)');
-        $stmt->execute([$this->name]);
+        $this->handler->delete($this->name);
     }
 }

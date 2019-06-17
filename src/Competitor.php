@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Symfony package.
+ * This file is part of the Foxtech package.
  *
  * (c) Mykhailo Bavdys <bavdysmyh@ukr.net>
  *
@@ -11,9 +11,11 @@
 
 namespace Foxtech;
 
+use Foxtech\Mutexes\MemcachedMutex;
 use Foxtech\Mutexes\PdoMutex;
 use InvalidArgumentException;
 use PDO;
+use Memcached;
 
 /**
  * Class Competitor
@@ -30,6 +32,7 @@ class Competitor
      */
     protected $handlers = [
         PDO::class => PdoMutex::class,
+        Memcached::class => MemcachedMutex::class,
     ];
 
     /**

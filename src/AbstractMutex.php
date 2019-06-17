@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Symfony package.
+ * This file is part of the Foxtech package.
  *
  * (c) Mykhailo Bavdys <bavdysmyh@ukr.net>
  *

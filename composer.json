@@ -14,7 +14,8 @@
     "php" : "^7.1"
   },
   "require-dev": {
-    "ext-pdo" : "*"
+    "ext-pdo" : "*",
+    "ext-memcached" : "*"
   },
   "autoload": {
     "psr-4": {
