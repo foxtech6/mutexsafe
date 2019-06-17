@@ -21,7 +21,7 @@ $factory = new \Foxtech\Competitor();
 $factory->setHandler($customHandler);
 
 $timeout = 50;//seconds
-$factory->getMutex('mutex_name')->acquire($timeout);
+$factory->getMutex('mutex_name')->acquire($timeout /* default timeout - 30 seconds */);
 
 // some code
 
