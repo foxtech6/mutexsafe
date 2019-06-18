@@ -13,9 +13,16 @@ namespace Foxtech;
 
 use Foxtech\Mutexes\MemcachedMutex;
 use Foxtech\Mutexes\PdoMutex;
+use Foxtech\Mutexes\RedisMutex;
 use InvalidArgumentException;
 use PDO;
 use Memcached;
+use Redis;
+use RedisArray;
+use RedisCluster;
+use Predis\Client;
+use Symfony\Component\Cache\Traits\RedisProxy;
+use Symfony\Component\Cache\Traits\RedisClusterProxy;
 
 /**
  * Class Competitor
@@ -33,6 +40,12 @@ class Competitor
     protected $handlers = [
         PDO::class => PdoMutex::class,
         Memcached::class => MemcachedMutex::class,
+        Redis::class => RedisMutex::class,
+        RedisArray::class => RedisMutex::class,
+        RedisCluster::class => RedisMutex::class,
+        Client::class => RedisMutex::class,
+        RedisProxy::class => RedisMutex::class,
+        RedisClusterProxy::class => RedisMutex::class,
     ];
 
     /**

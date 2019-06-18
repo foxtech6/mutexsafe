@@ -15,7 +15,8 @@
   },
   "require-dev": {
     "ext-pdo" : "*",
-    "ext-memcached" : "*"
+    "ext-memcached" : "*",
+    "predis/predis": "~1.0"
   },
   "autoload": {
     "psr-4": {
