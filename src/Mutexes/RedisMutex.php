@@ -18,8 +18,6 @@ use Redis;
 use RedisArray;
 use RedisCluster;
 use Predis\Client;
-use Symfony\Component\Cache\Traits\RedisProxy;
-use Symfony\Component\Cache\Traits\RedisClusterProxy;
 
 /**
  * Class MemcachedMutex
@@ -27,7 +25,7 @@ use Symfony\Component\Cache\Traits\RedisClusterProxy;
  *
  * @author foxtech <foxtech12@gmail.com>
  *
- * @property Redis|RedisArray|RedisCluster|Client|RedisClusterProxy $handler Memcached Handler
+ * @property Redis|RedisArray|RedisCluster|Client $handler Memcached Handler
  */
 class RedisMutex extends AbstractMutex implements MutexInterface
 {
@@ -43,14 +41,12 @@ class RedisMutex extends AbstractMutex implements MutexInterface
             && !$handler instanceof RedisArray
             && !$handler instanceof RedisCluster
             && !$handler instanceof Client
-            && !$handler instanceof RedisProxy
-            && !$handler instanceof RedisClusterProxy
         ) {
             throw new InvalidArgumentException(
                 sprintf(
                     '%s() expects parameter 1 to be Redis, RedisArray, RedisCluster or Predis\Client, %s given',
                     __METHOD__,
-                    \is_object($handler) ? \get_class($handler) : \gettype($handler)
+                    is_object($handler) ? get_class($handler) : gettype($handler)
                 )
             );
         }
@@ -78,25 +74,7 @@ class RedisMutex extends AbstractMutex implements MutexInterface
             end
         ';
 
-        if (
-            $this->handler instanceof Redis ||
-            $this->handler instanceof RedisCluster ||
-            $this->handler instanceof RedisProxy ||
-            $this->handler instanceof RedisClusterProxy
-        ) {
-            $this->handler->eval($script, [$this->name, $this->token, $timeout * 1000], 1);
-        }
-
-        if ($this->handler instanceof RedisArray) {
-            $this->handler->_instance($this->handler->_target($this->name))->eval(
-                $script,
-                [$this->token, $timeout * 1000],
-                1
-            );
-        }
-        if ($this->handler instanceof Client) {
-            $this->handler->eval(...[$script, 1, $this->name, $this->token, $timeout * 1000]);
-        }
+        $this->run($script, $timeout);
     }
 
     /**
@@ -113,24 +91,32 @@ class RedisMutex extends AbstractMutex implements MutexInterface
             end
         ';
 
-        if (
-            $this->handler instanceof Redis ||
-            $this->handler instanceof RedisCluster ||
-            $this->handler instanceof RedisProxy ||
-            $this->handler instanceof RedisClusterProxy
-        ) {
-            $this->handler->eval($script, [$this->name, $this->token], 1);
+        $this->run($script);
+    }
+
+    /**
+     * Execute redis script
+     *
+     * @param string   $script  Execution script
+     * @param int|null $timeout TTL scripts
+     */
+    private function run(string $script, int $timeout = null): void
+    {
+        $timeout = $timeout ?? 0;
+
+        if ($this->handler instanceof Redis || $this->handler instanceof RedisCluster) {
+            $this->handler->eval($script, [$this->name, $this->token, $timeout * 1000], 1);
         }
 
         if ($this->handler instanceof RedisArray) {
             $this->handler->_instance($this->handler->_target($this->name))->eval(
                 $script,
-                [$this->token],
+                [$this->token, $timeout * 1000],
                 1
             );
         }
         if ($this->handler instanceof Client) {
-            $this->handler->eval(...[$script, 1, $this->name, $this->token]);
+            $this->handler->eval(...[$script, 1, $this->name, $this->token, $timeout * 1000]);
         }
     }
 }

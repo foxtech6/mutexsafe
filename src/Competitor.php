@@ -21,8 +21,6 @@ use Redis;
 use RedisArray;
 use RedisCluster;
 use Predis\Client;
-use Symfony\Component\Cache\Traits\RedisProxy;
-use Symfony\Component\Cache\Traits\RedisClusterProxy;
 
 /**
  * Class Competitor
@@ -44,8 +42,6 @@ class Competitor
         RedisArray::class => RedisMutex::class,
         RedisCluster::class => RedisMutex::class,
         Client::class => RedisMutex::class,
-        RedisProxy::class => RedisMutex::class,
-        RedisClusterProxy::class => RedisMutex::class,
     ];
 
     /**
