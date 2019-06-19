@@ -14,12 +14,12 @@ namespace Foxtech\Mutexes;
 use Foxtech\MutexInterface;
 
 /**
- * Class FlockMutex
+ * Class SemaphoreMutex
  * @package Foxtech
  *
  * @author foxtech <foxtech12@gmail.com>
  */
-class FlockMutex implements MutexInterface
+class SemaphoreMutex implements MutexInterface
 {
     /**
      * {@inheritdoc}
@@ -36,6 +36,6 @@ class FlockMutex implements MutexInterface
      */
     public function release(): void
     {
-
+        
     }
 }
