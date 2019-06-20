@@ -40,6 +40,6 @@ class ZookeeperMutex extends AbstractMutex implements MutexInterface
      */
     public function release(): void
     {
-        
+
     }
 }

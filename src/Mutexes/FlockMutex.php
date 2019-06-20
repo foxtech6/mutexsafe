@@ -23,6 +23,11 @@ use Exception;
  */
 class FlockMutex extends AbstractMutex implements MutexInterface
 {
+    /**
+     * Handle resource
+     *
+     * @var bool|resource
+     */
     private $lockHandle;
 
     /**
