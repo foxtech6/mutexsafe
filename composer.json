@@ -14,9 +14,6 @@
     "php" : "^7.1"
   },
   "require-dev": {
-    "ext-pdo" : "*",
-    "ext-memcached" : "*",
-    "ext-redis": "*",
     "predis/predis": "~1.0"
   },
   "autoload": {
