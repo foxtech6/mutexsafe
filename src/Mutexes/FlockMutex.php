@@ -86,5 +86,6 @@ class FlockMutex extends AbstractMutex implements MutexInterface
 
         flock($this->lockHandle, LOCK_UN | LOCK_NB);
         fclose($this->lockHandle);
+        $this->handler = null;
     }
 }
