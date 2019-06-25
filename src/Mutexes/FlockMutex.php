@@ -43,7 +43,9 @@ class FlockMutex extends AbstractMutex implements MutexInterface
         $fileName = sprintf('%s/sf.%s.%s.lock',
             $lockPath ?? sys_get_temp_dir(),
             preg_replace('/[^a-z0-9\._-]+/i', '-', $this->name),
-            strtr(substr(base64_encode(hash('sha256', $this->name, true)), 0, 7), '/', '_')
+            strtr(
+                substr(base64_encode(hash('sha256', $this->name, true)), 0, 7), '/', '_'
+            )
         );
 
         set_error_handler(function ($type, $msg) use (&$error) { $error = $msg; });
