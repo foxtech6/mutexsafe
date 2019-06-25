@@ -36,12 +36,12 @@ class Competitor
      * @var array
      */
     protected $handlers = [
-        PDO::class => PdoMutex::class,
-        Memcached::class => MemcachedMutex::class,
-        Redis::class => RedisMutex::class,
-        RedisArray::class => RedisMutex::class,
+        PDO::class          => PdoMutex::class,
+        Memcached::class    => MemcachedMutex::class,
+        Redis::class        => RedisMutex::class,
+        RedisArray::class   => RedisMutex::class,
         RedisCluster::class => RedisMutex::class,
-        Client::class => RedisMutex::class,
+        Client::class       => RedisMutex::class,
     ];
 
     /**
