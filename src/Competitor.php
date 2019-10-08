@@ -14,6 +14,7 @@ namespace Foxtech;
 use Foxtech\Mutexes\MemcachedMutex;
 use Foxtech\Mutexes\PdoMutex;
 use Foxtech\Mutexes\RedisMutex;
+use Foxtech\Mutexes\ZookeeperMutex;
 use InvalidArgumentException;
 use PDO;
 use Memcached;
@@ -21,6 +22,7 @@ use Redis;
 use RedisArray;
 use RedisCluster;
 use Predis\Client;
+use Zookeeper;
 
 /**
  * Class Competitor
@@ -42,6 +44,7 @@ class Competitor
         RedisArray::class   => RedisMutex::class,
         RedisCluster::class => RedisMutex::class,
         Client::class       => RedisMutex::class,
+        Zookeeper::class    => ZookeeperMutex::class,
     ];
 
     /**
