@@ -3,7 +3,7 @@
 /*
  * This file is part of the Foxtech package.
  *
- * (c) Mykhailo Bavdys <bavdysmyh@ukr.net>
+ * (c) foxtech <foxtech12@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -25,10 +25,10 @@ interface MutexInterface
     /**
      * The method should turn on the lock
      */
-    public function acquire(): void ;
+    public function acquire(): void;
 
     /**
      * The method that should turn off the lock
      */
-    public function release(): void ;
+    public function release(): void;
 }

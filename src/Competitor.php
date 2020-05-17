@@ -3,7 +3,7 @@
 /*
  * This file is part of the Foxtech package.
  *
- * (c) Mykhailo Bavdys <bavdysmyh@ukr.net>
+ * (c) foxtech <foxtech12@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -82,9 +82,10 @@ class Competitor
     public function setHandler($handler): void
     {
         if (!array_key_exists(get_class($handler), $this->handlers)) {
-            throw new InvalidArgumentException(
-                sprintf('The %s you want to use is not in the list of implementing classes', get_class($handler))
-            );
+            throw new InvalidArgumentException(sprintf(
+                'The %s you want to use is not in the list of implementing classes',
+                get_class($handler)
+            ));
         }
 
         $this->handler = $handler;
@@ -124,13 +125,11 @@ class Competitor
     public function push(string $handlerClass, string $mutexClass): void
     {
         if (!is_a($mutexClass, MutexInterface::class, true)) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    'The %s you want to add does not implement the interface %s',
-                    $mutexClass,
-                    MutexInterface::class
-                )
-            );
+            throw new InvalidArgumentException(sprintf(
+                'The %s you want to add does not implement the interface %s',
+                $mutexClass,
+                MutexInterface::class
+            ));
         }
 
         $this->handlers[$handlerClass] = $mutexClass;

@@ -3,7 +3,7 @@
 /*
  * This file is part of the Foxtech package.
  *
- * (c) Mykhailo Bavdys <bavdysmyh@ukr.net>
+ * (c) foxtech <foxtech12@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -42,13 +42,11 @@ class RedisMutex extends AbstractMutex implements MutexInterface
             && !$handler instanceof RedisCluster
             && !$handler instanceof Client
         ) {
-            throw new InvalidArgumentException(
-                sprintf(
-                    '%s() expects parameter 1 to be Redis, RedisArray, RedisCluster or Predis\Client, %s given',
-                    __METHOD__,
-                    is_object($handler) ? get_class($handler) : gettype($handler)
-                )
-            );
+            throw new InvalidArgumentException(sprintf(
+                '%s() expects parameter 1 to be Redis, RedisArray, RedisCluster or Predis\Client, %s given',
+                __METHOD__,
+                is_object($handler) ? get_class($handler) : gettype($handler)
+            ));
         }
 
         parent::__construct($handler, $name);

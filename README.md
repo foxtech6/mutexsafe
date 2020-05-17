@@ -1,9 +1,9 @@
 # MutexSafe
-<h3 align="center">Help use mutex effectively | PHP</h3>
+<h3 align="center">Help use mutex effectively | With PHP7</h3>
 <p align="center">
-   <img src='https://i.ibb.co/6Wd3SKj/depositphotos-7524421-stock-illustration-saber-vector.jpg' alt="logo"/>
+   <img src='mutexsafe.jpg' alt="logo"/>
 </p>
-
+[![Latest Stable Version](https://poser.pugx.org/phpunit/phpunit/v)](//packagist.org/packages/phpunit/phpunit) [![Total Downloads](https://poser.pugx.org/phpunit/phpunit/downloads)](//packagist.org/packages/phpunit/phpunit) [![Latest Unstable Version](https://poser.pugx.org/phpunit/phpunit/v/unstable)](//packagist.org/packages/phpunit/phpunit) [![License](https://poser.pugx.org/phpunit/phpunit/license)](//packagist.org/packages/phpunit/phpunit)
 - This library will help you use mutex more effectively.
 - Different mutex for different components are presented.
 - In addition, you can add your own lockers and use within the library.
