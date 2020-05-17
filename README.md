@@ -1,5 +1,5 @@
 # MutexSafe
-<h3 align="center">Help use mutex effectively | With PHP7</h3>
+<h3 align="center">Manage locks effectively and faster | With PHP7</h3>
 <p align="center">
    <img width="160" src="mutexsafe.jpg" alt="logo"/>
 </p>
