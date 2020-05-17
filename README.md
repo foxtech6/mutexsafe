@@ -1,6 +1,8 @@
-# Mutex "m4z3p4"
-
-![](https://i.ibb.co/6Wd3SKj/depositphotos-7524421-stock-illustration-saber-vector.jpg)
+# MutexSafe
+<h3 align="center">Help use mutex effectively | PHP</h3>
+<p align="center">
+   <img src='https://i.ibb.co/6Wd3SKj/depositphotos-7524421-stock-illustration-saber-vector.jpg' alt="logo"/>
+</p>
 
 - This library will help you use mutex more effectively.
 - Different mutex for different components are presented.
