@@ -4,9 +4,9 @@
    <img width="160" src="mutexsafe.jpg" alt="logo"/>
 </p>
 
-[![Latest Stable Version](https://poser.pugx.org/foxtech6/mutex-locker/v)](//packagist.org/packages/phpunit/phpunit)
-[![Total Downloads](https://poser.pugx.org/foxtech6/mutex-locker/downloads)](//packagist.org/packages/phpunit/phpunit)
-[![License](https://poser.pugx.org/foxtech6/mutex-locker/license)](//packagist.org/packages/phpunit/phpunit)
+[![Latest Stable Version](https://poser.pugx.org/foxtech6/mutex-locker/v)](https://packagist.org/packages/foxtech6/mutex-locker#v1.0)
+[![Total Downloads](https://poser.pugx.org/foxtech6/mutex-locker/downloads)](https://packagist.org/packages/foxtech6/mutex-locker/stats)
+[![License](https://poser.pugx.org/foxtech6/mutex-locker/license)](https://github.com/foxtech6/mutex-locker/blob/master/LICENSE)
 
 - This library will help you use mutex more effectively.
 - Different mutex for different components are presented.
