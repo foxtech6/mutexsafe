@@ -59,16 +59,16 @@ class RedisMutex extends AbstractMutex implements MutexInterface
     public function acquire(int $timeout = 30): void
     {
         if (!$this->token) {
-            $this->token = base64_encode(random_bytes(32));
+            $this->token = base64_encode(random_bytes(64));
         }
 
         $script = '
-            if redis.call("GET", KEYS[1]) == ARGV[1] then
+            if redis.call("GET", KEYS[1]) === ARGV[1] then
                 return redis.call("PEXPIRE", KEYS[1], ARGV[2])
             elseif redis.call("SET", KEYS[1], ARGV[1], "NX", "PX", ARGV[2]) then
-                return 1
-            else
                 return 0
+            else
+                return 1
             end
         ';
 
@@ -102,10 +102,6 @@ class RedisMutex extends AbstractMutex implements MutexInterface
     {
         $timeout = $timeout ?? 0;
 
-        if ($this->handler instanceof Redis || $this->handler instanceof RedisCluster) {
-            $this->handler->eval($script, [$this->name, $this->token, $timeout * 1000], 1);
-        }
-
         if ($this->handler instanceof RedisArray) {
             $this->handler->_instance($this->handler->_target($this->name))->eval(
                 $script,
@@ -113,6 +109,7 @@ class RedisMutex extends AbstractMutex implements MutexInterface
                 1
             );
         }
+
         if ($this->handler instanceof Client) {
             $this->handler->eval(...[$script, 1, $this->name, $this->token, $timeout * 1000]);
         }
