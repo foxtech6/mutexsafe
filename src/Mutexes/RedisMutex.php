@@ -59,7 +59,7 @@ class RedisMutex extends AbstractMutex implements MutexInterface
     public function acquire(int $timeout = 30): void
     {
         if (!$this->token) {
-            $this->token = base64_encode(random_bytes(64));
+            $this->token = base64_encode(random_bytes(32));
         }
 
         $script = '
