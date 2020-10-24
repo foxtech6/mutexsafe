@@ -44,7 +44,12 @@ class FlockMutex extends AbstractMutex implements MutexInterface
             $lockPath ?? sys_get_temp_dir(),
             $this->name,
             strtr(
-                substr(base64_encode(hash('sha256', $this->name, true)), 0, 7), '/', '_'
+                substr(
+                    base64_encode(
+                        hash('sha256', $this->name, true)
+                    ), 0, 7),
+                '/',
+                '_'
             )
         );
 
