@@ -34,6 +34,8 @@ class SemaphoreMutex extends AbstractMutex implements MutexInterface
     /**
      * {@inheritdoc}
      * @see MutexInterface::acquire()
+     *
+     * @throws Exception
      */
     public function acquire(string $lockPath = null): void
     {
@@ -47,7 +49,7 @@ class SemaphoreMutex extends AbstractMutex implements MutexInterface
 
         $keyId = crc32($this->name);
         $resource = sem_get($keyId);
-        $acquired = @sem_acquire($resource, true);
+        $acquired = sem_acquire($resource, true);
 
         if (!$acquired) {
             throw new Exception();
@@ -68,6 +70,7 @@ class SemaphoreMutex extends AbstractMutex implements MutexInterface
 
         $resource = $this->handler;
         sem_remove($resource);
+
         $this->handler = null;
     }
 }
