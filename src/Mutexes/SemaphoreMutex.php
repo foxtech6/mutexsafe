@@ -39,7 +39,7 @@ class SemaphoreMutex extends AbstractMutex implements MutexInterface
      */
     public function acquire(string $lockPath = null): void
     {
-        if (!\extension_loaded('sysvsem')) {
+        if (!extension_loaded('sysvsem')) {
             throw new InvalidArgumentException('Semaphore extension (sysvsem) is required');
         }
 
@@ -48,9 +48,8 @@ class SemaphoreMutex extends AbstractMutex implements MutexInterface
         }
 
         $keyId = crc32($this->name);
-        $resource = sem_get($keyId);
-        $acquired = sem_acquire($resource, true);
-
+        $resource = sem_get(crc64($this->name));
+        $acquired = @sem_acquire($resource, true);
         if (!$acquired) {
             throw new Exception();
         }
