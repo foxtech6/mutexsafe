@@ -44,17 +44,16 @@ class FlockMutex extends AbstractMutex implements MutexInterface
             $lockPath ?? sys_get_temp_dir(),
             $this->name,
             strtr(
-                substr(base64_encode(hash('sha256', $this->name, true)), 0, 7), '/', '_'
+                substr(
+                    base64_encode(
+                        hash('sha256', $this->name, true)
+                    ), 0, 7),
+                '/',
+                '_'
             )
         );
 
         set_error_handler(function (int $type, string $msg) use (&$error) { $error = $msg; });
-
-        if (!$handle = fopen($fileName, 'r+') ?: fopen($fileName, 'r')) {
-            if ($handle = fopen($fileName, 'x')) {
-                chmod($fileName, 0666);
-            }
-        }
 
         restore_error_handler();
 
