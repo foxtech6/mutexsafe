@@ -85,7 +85,7 @@ class Competitor
             throw new InvalidArgumentException(sprintf(
                 'The %s you want to use is not in the list of implementing classes',
                 get_class($handler)
-            ));
+            )); 
         }
 
         $this->handler = $handler;
