@@ -80,7 +80,14 @@ class Competitor
      * @throws InvalidArgumentException
      */
     public function setHandler($handler): void
-    { 
+    {
+        if (!array_key_exists(get_class($handler), $this->handlers)) {
+            throw new InvalidArgumentException(sprintf(
+                'The %s you want to use is not in the list of implementing classes',
+                get_class($handler)
+            ));
+        }
+      
         $this->handler = $handler;
     }
 
