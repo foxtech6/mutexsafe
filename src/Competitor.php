@@ -87,7 +87,7 @@ class Competitor
                 get_class($handler)
             ));
         }
-
+      
         $this->handler = $handler;
     }
 
