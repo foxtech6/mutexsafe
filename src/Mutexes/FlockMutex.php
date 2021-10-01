@@ -55,12 +55,6 @@ class FlockMutex extends AbstractMutex implements MutexInterface
 
         set_error_handler(function (int $type, string $msg) use (&$error) { $error = $msg; });
 
-        if (!$handle = fopen($fileName, 'r+') ?: fopen($fileName, 'r')) {
-            if ($handle = fopen($fileName, 'x')) {
-                chmod($fileName, 0666);
-            }
-        }
-
         restore_error_handler();
 
         if (!$handle) {
