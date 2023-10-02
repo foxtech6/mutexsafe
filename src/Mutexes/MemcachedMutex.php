@@ -29,7 +29,7 @@ class MemcachedMutex extends AbstractMutex implements MutexInterface
      * {@inheritdoc}
      * @see MutexInterface::acquire()
      */
-    public function acquire(int $timeout = 60): void
+    public function acquire(int $timeout = 50): void
     {
         $this->handler->add($this->name, true, $timeout);
     }
