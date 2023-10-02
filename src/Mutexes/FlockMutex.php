@@ -50,6 +50,11 @@ class FlockMutex extends AbstractMutex implements MutexInterface
 
         restore_error_handler();
 
+        if (!$handle) {
+            // TODO: change customize exception
+            throw new Exception();
+        }
+        
         if (!flock($handle, LOCK_EX | LOCK_NB)) {
             fclose($handle);
             // TODO: change customize exception
