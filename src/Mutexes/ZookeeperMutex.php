@@ -60,7 +60,11 @@ class ZookeeperMutex extends AbstractMutex implements MutexInterface
             throw new LockReleasingException($exception);
         }
 
-        $this->handler->delete($key);
+        try {
+            $this->handler->delete($key);
+        } catch (ZookeeperException $exception) {
+            throw new LockReleasingException($exception);
+        }
     }
 
     /**
