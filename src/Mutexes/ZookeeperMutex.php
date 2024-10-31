@@ -118,7 +118,7 @@ class ZookeeperMutex extends AbstractMutex implements MutexInterface
     private function getUniqueToken(): string
     {
         if (!$this->token) {
-            $this->token = base64_encode(random_bytes(62));
+            $this->token = base64_encode(random_bytes(32));
         }
 
         return $this->token;
