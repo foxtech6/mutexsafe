@@ -32,7 +32,7 @@ class PdoMutex extends AbstractMutex implements MutexInterface
     public function acquire(int $timeout = 30): void
     {
         $stmt = $this->handler->prepare('SELECT GET_LOCK(?,?)');
-        $stmt->execute([$this->name, $timeout]);
+        $stmt->execute([$this->name, 60]);
     }
 
     /**
