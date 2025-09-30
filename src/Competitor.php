@@ -102,7 +102,13 @@ class Competitor
     {
         if (!isset($this->mutexes[$name])) {
             $mutexClass = $this->handlers[get_class($this->handler)];
-            $this->mutexes[$name] = new $mutexClass(...$mutexClass);
+            $arguments = [];
+
+            if (is_a($mutexClass, AbstractMutex::class, true)) {
+                $arguments = [$this->handler, $name];
+            }
+
+            $this->mutexes[$name] = new $mutexClass(...$arguments);
         }
 
         return $this->mutexes[$name];
