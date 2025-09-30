@@ -39,11 +39,7 @@ class SemaphoreMutex extends AbstractMutex implements MutexInterface
      */
     public function acquire(string $lockPath = null): void
     {
-        if (!\extension_loaded('sysvsem')) {
-            throw new InvalidArgumentException('Semaphore extension (sysvsem) is required');
-        }
-
-        if ($this->lockHandle) {
+       if ($this->lockHandle) {
             return;
         }
 
