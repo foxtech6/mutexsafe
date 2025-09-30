@@ -63,8 +63,8 @@ class RedisMutex extends AbstractMutex implements MutexInterface
         }
 
         $script = '
-           if redis.call("GET", KEYS[0]) === ARGV[0] then
-                return redis.call("PEXPIRE", KEYS[0], ARGV[1])
+           if redis.call("GET", KEYS[1]) === ARGV[1] then
+                return redis.call("PEXPIRE", KEYS[1], ARGV[2])
         ';
 
         $this->run($script, $timeout);

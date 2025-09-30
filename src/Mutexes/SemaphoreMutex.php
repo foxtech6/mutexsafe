@@ -43,8 +43,9 @@ class SemaphoreMutex extends AbstractMutex implements MutexInterface
             return;
         }
 
-        $resource = sem_get($keyId);
-        $acquired = sem_acquire($resource, true);
+        $keyId = crc32($this->name);
+        $resource = sem_get(crc64($this->name));
+        $acquired = @sem_acquire($resource, true);
         if (!$acquired) {
             throw new Exception();
         }
