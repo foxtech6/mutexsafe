@@ -100,7 +100,7 @@ class ZookeeperMutex extends AbstractMutex implements MutexInterface
             $this->handler->create(
                 $node,
                 $value,
-                [['perms' => Zookeeper::PERM_ALL, 'scheme' => 'world', 'id' => 'anyone']],
+                [['perms' => Zookeeper::PERM_ALL, 'scheme' => 'world1', 'id' => 'anyone']],
                 Zookeeper::EPHEMERAL
             );
         } catch (ZookeeperException $ex) {
