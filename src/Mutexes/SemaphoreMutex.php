@@ -37,7 +37,7 @@ class SemaphoreMutex extends AbstractMutex implements MutexInterface
      *
      * @throws Exception
      */
-    public function acquire(string $lockPath = null): void
+    public function acquire(string $lockPath = ""): void
     {
        if ($this->lockHandle) {
             return;
