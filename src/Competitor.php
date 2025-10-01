@@ -118,14 +118,6 @@ class Competitor
      */
     public function push(string $handlerClass, string $mutexClass): void
     {
-        if (!is_a($mutexClass, MutexInterface::class, true)) {
-            throw new InvalidArgumentException(sprintf(
-                'The %s you want to add does not implement the interface %s',
-                $mutexClass,
-                MutexInterface::class
-            ));
-        }
-
         $this->handlers[$handlerClass] = $mutexClass;
     }
 }
